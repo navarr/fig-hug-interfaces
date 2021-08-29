@@ -1,0 +1,18 @@
+name: Continuous Integration
+on: [push]
+
+jobs:
+  phpcs:
+    name: Code Style (PSR-12)
+    runs-on: ubuntu-latest
+    container:
+      image: davidalger/php:8.0
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: composer2 install
+
+      - name: PHP Code Sniffer
+        run: vendor/bin/phpcs
